@@ -1,0 +1,25 @@
+/* This file is for your main application css. */
+
+@import "./phoenix.css";
+
+.ac-event-unknown {
+    background-color: #37474F
+}
+.ac-event-scheduled {
+    background-color: #4caf50
+}
+.ac-event-on-schedule {
+    background-color: #3F729B
+}
+.ac-event-behind-schedule {
+    background-color: #ff9800
+}
+.ac-event-completed {
+    background-color: #1b5e20
+}
+.ac-event-aborted {
+    background-color: #ef9a9a
+}
+.ac-event-overdue {
+    background-color: #b71c1c
+}
