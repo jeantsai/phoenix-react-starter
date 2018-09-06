@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:10-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: M0bi1e
+    volumes:
+      - ./db/pg-data:/var/lib/postgresql/data
+  phx:
+    image: jeantsai/phoenix-alpine
+    ports:
+      - 8600:4000
+    volumes:
+      - .:/app
+    links:
+      - postgres
+    entrypoint:
+      - sh
+    stdin_open: true
+    tty: true
