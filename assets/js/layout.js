@@ -6,11 +6,11 @@ import {
   IndexRoute,
 } from 'react-router-dom'
 import NavBar from './components/NavBar/nav-bar'
-import MyCalendar from './components/MyCalendar/my-calendar'
+import CalendarPage from './components/MyCalendar/CalendarPage'
 
 const Layout = () => (
   <div>
-    <Route path="/" component={MyCalendar} />
+    <Route path="/" component={CalendarPage} />
   </div>
 )
 

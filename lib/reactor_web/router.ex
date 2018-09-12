@@ -19,8 +19,14 @@ defmodule ReactorWeb.Router do
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", ReactorWeb do
-  #   pipe_through :api
-  # end
+  scope "/api" do
+    pipe_through :api
+    
+    forward "/graphiql", Absinthe.Plug.GraphiQL, 
+      schema: ReactorWeb.Schema,
+      interface: :simple
+
+    forward "/", Absinthe.Plug,
+      schema: ReactorWeb.Schema
+  end
 end

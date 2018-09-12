@@ -51,12 +51,9 @@ const eventPropGetter = (event, start, end, isSelected) => {
 }
 
 class MyCalendar extends React.Component {
-
   constructor(props) {
     super(props)
-    this.state = {
-      events: events
-    }
+    console.log("Props: ", props)
   }
 
   onEventResize = (type, { event, start, end, allDay }) => {
@@ -80,7 +77,7 @@ class MyCalendar extends React.Component {
         <Calendar
           defaultDate={new Date()}
           defaultView="month"
-          events={this.state.events}
+          events={this.props.events}
           onEventDrop={this.onEventDrop}
           onEventResize={this.onEventResize}
           onSelectSlot={this.onSelectSlot}

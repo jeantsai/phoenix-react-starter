@@ -8,6 +8,8 @@ services:
       POSTGRES_PASSWORD: M0bi1e
     volumes:
       - ./db/pg-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
   phx:
     image: jeantsai/phoenix-alpine
     ports:

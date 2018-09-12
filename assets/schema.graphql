@@ -1,0 +1,35 @@
+schema {
+  query: RootQueryType
+}
+
+# An object with an ID
+interface Node {
+  # The id of the object.
+  id: ID!
+}
+
+type RootQueryType {
+  allTasks: [Task!]
+
+  # Fetches an object given its ID
+  node(
+    # The id of an object.
+    id: ID!
+  ): Node
+}
+
+type Task implements Node {
+  aborted: Boolean
+  description: String
+  end: Time
+
+  # The ID of an object
+  id: ID!
+  progress: Int
+  start: Time
+  title: String
+}
+
+# Time (in ISOz format)
+scalar Time
+

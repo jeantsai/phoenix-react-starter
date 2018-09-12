@@ -41,7 +41,13 @@ defmodule Reactor.MixProject do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:cowboy, "~> 1.0"}
+      {:cowboy, "~> 1.0"},
+      {:timex, "~> 3.0"},
+      {:poison, "~> 3.1"},
+      {:absinthe, "~> 1.4"},
+      {:absinthe_relay, "~> 1.4"},
+      {:absinthe_plug, "~> 1.4"},
+      {:absinthe_ecto, "~> 0.1"},
     ]
   end
 
