@@ -17,6 +17,7 @@ defmodule ReactorWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/calendar", PageController, :index
   end
 
   scope "/api" do

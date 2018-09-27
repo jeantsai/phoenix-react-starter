@@ -1,5 +1,33 @@
 schema {
   query: RootQueryType
+  mutation: RootMutationType
+}
+
+input CreateTaskInput {
+  aborted: Boolean
+  description: String
+  end: DateTime!
+  progress: Int
+  start: DateTime!
+  title: String!
+}
+
+input CreateTaskObjectInput {
+  task: TaskInputObject!
+}
+
+type CreateTaskObjectPayload {
+  task: Task
+}
+
+type CreateTaskPayload {
+  success: Boolean!
+}
+
+scalar DateTime
+
+type DeleteTaskPayload {
+  task: Task
 }
 
 # An object with an ID
@@ -8,28 +36,54 @@ interface Node {
   id: ID!
 }
 
-type RootQueryType {
-  allTasks: [Task!]
+type RootMutationType {
+  createTask(input: CreateTaskInput!): CreateTaskPayload
+  createTaskObject(input: CreateTaskObjectInput!): CreateTaskObjectPayload
+  createTaskSimple(aborted: Boolean, description: String, end: DateTime, progress: Int, start: DateTime, title: String): Task
+  deleteTask(id: String!): DeleteTaskPayload
+  updateTask(input: UpdateTaskInput!): UpdateTaskPayload
+}
 
+type RootQueryType {
   # Fetches an object given its ID
   node(
     # The id of an object.
     id: ID!
   ): Node
+  taskList: TaskList
 }
 
 type Task implements Node {
   aborted: Boolean
   description: String
-  end: Time
+  end: DateTime!
 
   # The ID of an object
   id: ID!
   progress: Int
-  start: Time
-  title: String
+  start: DateTime!
+  title: String!
 }
 
-# Time (in ISOz format)
-scalar Time
+input TaskInputObject {
+  aborted: Boolean
+  description: String
+  end: DateTime!
+  progress: Int
+  start: DateTime!
+  title: String!
+}
+
+type TaskList {
+  tasks: [Task!]
+}
+
+input UpdateTaskInput {
+  id: String!
+  task: TaskInputObject!
+}
+
+type UpdateTaskPayload {
+  task: Task
+}
 

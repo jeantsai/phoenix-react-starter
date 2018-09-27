@@ -31,7 +31,27 @@ module.exports = (env, options) => ({
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader']
-      }
+      },
+      // Font-awesome 4.7.X
+      {
+        test: /.(ttf|otf|eot|svg|woff2?)([a-z0-9]+)?$/,
+        exclude: [/vendors/, /img/],
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: '../fonts',
+          useRelativePath: true,
+        }
+        // loader: 'file-loader'
+      },
+      {
+        test: /.(png|jpg|gif|svg)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          useRelativePath: true,
+        },
+      },
     ]
   },
   plugins: [

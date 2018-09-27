@@ -8,7 +8,10 @@ import {
   const store = new Store(new RecordSource())
   
   const network = Network.create((operation, variables) => {
-    console.log("Fetching data from GraphQL server ...")
+    console.log("Accessing GraphQL server with data:", JSON.stringify({
+      query: operation.text,
+      variables,
+    }))
     return fetch('http://localhost:8600/api', {
       method: 'POST',
       headers: {
@@ -21,6 +24,12 @@ import {
       }),
     }).then(response => {
       return response.json()
+    }).then(json => {
+      // https://github.com/facebook/relay/issues/1816
+      if (operation.operationKind === 'mutation' && json.errors) {
+        return Promise.reject(json.errors)
+      }
+      return Promise.resolve(json)
     })
   })
   

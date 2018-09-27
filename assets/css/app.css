@@ -1,6 +1,6 @@
 /* This file is for your main application css. */
 
-@import "./phoenix.css";
+/* @import "./phoenix.css"; */
 
 .ac-event-unknown {
     background-color: #37474F
@@ -23,3 +23,8 @@
 .ac-event-overdue {
     background-color: #b71c1c
 }
+
+li {
+    margin-bottom: 0em
+}
+
